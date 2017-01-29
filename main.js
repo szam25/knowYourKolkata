@@ -89,7 +89,7 @@ function initMap() {
           styles: styles,
           mapTypeControl: false
         });
-ko.appleBindings(new viewModel());
+ko.applyBindings(new viewModel());
 }
 //viewmodel
 var viewModel = function(){
@@ -118,7 +118,17 @@ var viewModel = function(){
         	});
 
         var largeInfowindow = new google.maps.InfoWindow();
-
+        // Initialize the drawing manager.
+        var drawingManager = new google.maps.drawing.DrawingManager({
+          drawingMode: google.maps.drawing.OverlayType.POLYGON,
+          drawingControl: true,
+          drawingControlOptions: {
+            position: google.maps.ControlPosition.TOP_LEFT,
+            drawingModes: [
+              google.maps.drawing.OverlayType.POLYGON
+            ]
+          }
+        });
 
         // Style the markers a bit. This will be our listing marker icon.
         var defaultIcon = makeMarkerIcon('0091ff');
@@ -160,7 +170,35 @@ var viewModel = function(){
 
         document.getElementById('show-listings').addEventListener('click', showListings);
         document.getElementById('hide-listings').addEventListener('click', hideListings);
+        document.getElementById('toggle-drawing').addEventListener('click', function() {
+          toggleDrawing(drawingManager);
+        });
 
+        document.getElementById('zoom-to-area').addEventListener('click', function() {
+          zoomToArea();
+        });
+
+        // Add an event listener so that the polygon is captured,  call the
+        // searchWithinPolygon function. This will show the markers in the polygon,
+        // and hide any outside of it.
+        drawingManager.addListener('overlaycomplete', function(event) {
+          // First, check if there is an existing polygon.
+          // If there is, get rid of it and remove the markers
+          if (polygon) {
+            polygon.setMap(null);
+            hideListings(markers);
+          }
+          // Switching the drawing mode to the HAND (i.e., no longer drawing).
+          drawingManager.setDrawingMode(null);
+          // Creating a new editable polygon from the overlay.
+          polygon = event.overlay;
+          polygon.setEditable(true);
+          // Searching within the polygon.
+          searchWithinPolygon();
+          // Make sure the search is re-done if the poly is changed.
+          polygon.getPath().addListener('set_at', searchWithinPolygon);
+          polygon.getPath().addListener('insert_at', searchWithinPolygon);
+        });
         map.fitBounds(bounds);
 };
       // This function populates the infowindow when the marker is clicked. We'll only allow
