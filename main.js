@@ -1,12 +1,10 @@
-var map;
 
       // Create a new blank array for all the listing markers.
       var markers = [];
 
-      // This global polygon variable is to ensure only ONE polygon is rendered.
-      var polygon = null;
-      // Create a styles array to use with the map.
-      var styles = [
+      function initMap() {
+        // Create a styles array to use with the map.
+        var styles = [
           {
             featureType: 'water',
             stylers: [
@@ -72,16 +70,7 @@ var map;
             ]
           }
         ];
-        // Normally we'd have these in a database instead.
-var locations = [
-          {title: "Eden Gardens", location: {lat: 22.564608, lng: 88.343265}},
-          {title: "Dumdum Airport", location: {lat: 22.645029, lng: 88.433923}},
-          {title: "Victoria Memorial", location: {lat: 22.544808, lng: 88.342558}},
-          {title: "Prinsep Ghat", location: {lat: 22.556783, lng: 88.331598}},
-          {title: "Jorasanko Thakurbari", location: {lat: 22.583199, lng: 88.356716}},
-          {title: "Dakshineswar Kali Temple", location: {lat:  22.654909, lng: 88.357531}}
-        ];
-function initMap() {
+
         // Constructor creates a new map - only center and zoom are required.
         map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: 22.572646, lng: 88.363895},
@@ -89,46 +78,20 @@ function initMap() {
           styles: styles,
           mapTypeControl: false
         });
-ko.applyBindings(new viewModel());
-}
-//viewmodel
-var viewModel = function(){
-        var self = this;
-        self.locationList = ko.observableArray(locations);
-        self.title = ko.observable('');
-        self.navigation = ko.observable();
-        self.currentMaker = function(place){
 
-        	toggleBounce(place.marker);
-        	new google.maps.event.trigger(place.marker, 'click');
-
-        };
-        	self.query = ko.observable('');
-        	self.search = ko.computed(function(){
-        		var userInput = self.query().toLowerCase();
-        		return searchResult = ko.utils.arrayFilter(self.locationList(), function(item){
-        		var title = item.title.toLowerCase().indexOf(userInput) >= 0;
-        		if(item.marker){
-        			item.marker.setVisible(title);
-        		}
-        		return title;
-
-        	});
-        	
-        	});
+        // These are the real estate listings that will be shown to the user.
+        // Normally we'd have these in a database instead.
+         var locations = [
+          {title: 'Eden Gardens', location: {lat: 22.564608, lng: 88.343265}},
+          {title: 'Zoological Garden Alipore', location: {lat: 22.537472, lng: 88.331859}},
+          {title: 'Victoria Memorial', location: {lat: 22.544808, lng: 88.342558}},
+          {title: 'Prinsep Ghat', location: {lat: 22.556783, lng: 88.331598}},
+          {title: 'Jorasanko Thakurbari', location: {lat: 22.583199, lng: 88.356716}},
+          {title: 'Dakshineswar Kali Temple', location: {lat: 22.654909, lng: 88.357531}}
+        ];
 
         var largeInfowindow = new google.maps.InfoWindow();
-        // Initialize the drawing manager.
-        var drawingManager = new google.maps.drawing.DrawingManager({
-          drawingMode: google.maps.drawing.OverlayType.POLYGON,
-          drawingControl: true,
-          drawingControlOptions: {
-            position: google.maps.ControlPosition.TOP_LEFT,
-            drawingModes: [
-              google.maps.drawing.OverlayType.POLYGON
-            ]
-          }
-        });
+
 
         // Style the markers a bit. This will be our listing marker icon.
         var defaultIcon = makeMarkerIcon('0091ff');
@@ -137,8 +100,6 @@ var viewModel = function(){
         // mouses over the marker.
         var highlightedIcon = makeMarkerIcon('FFFF24');
 
-        var bounds = new google.maps.LatLngBounds();
-        
         // The following group uses the location array to create an array of markers on initialize.
         for (var i = 0; i < locations.length; i++) {
           // Get the position from the location array.
@@ -170,41 +131,13 @@ var viewModel = function(){
 
         document.getElementById('show-listings').addEventListener('click', showListings);
         document.getElementById('hide-listings').addEventListener('click', hideListings);
-        document.getElementById('toggle-drawing').addEventListener('click', function() {
-          toggleDrawing(drawingManager);
-        });
 
-        document.getElementById('zoom-to-area').addEventListener('click', function() {
-          zoomToArea();
-        });
+      }
 
-        // Add an event listener so that the polygon is captured,  call the
-        // searchWithinPolygon function. This will show the markers in the polygon,
-        // and hide any outside of it.
-        drawingManager.addListener('overlaycomplete', function(event) {
-          // First, check if there is an existing polygon.
-          // If there is, get rid of it and remove the markers
-          if (polygon) {
-            polygon.setMap(null);
-            hideListings(markers);
-          }
-          // Switching the drawing mode to the HAND (i.e., no longer drawing).
-          drawingManager.setDrawingMode(null);
-          // Creating a new editable polygon from the overlay.
-          polygon = event.overlay;
-          polygon.setEditable(true);
-          // Searching within the polygon.
-          searchWithinPolygon();
-          // Make sure the search is re-done if the poly is changed.
-          polygon.getPath().addListener('set_at', searchWithinPolygon);
-          polygon.getPath().addListener('insert_at', searchWithinPolygon);
-        });
-        map.fitBounds(bounds);
-};
       // This function populates the infowindow when the marker is clicked. We'll only allow
       // one infowindow which will open at the marker that is clicked, and populate based
       // on that markers position.
-function populateInfoWindow(marker, infowindow) {
+      function populateInfoWindow(marker, infowindow) {
         // Check to make sure the infowindow is not already opened on this marker.
         if (infowindow.marker != marker) {
           // Clear the infowindow content to give the streetview time to load.
@@ -246,7 +179,8 @@ function populateInfoWindow(marker, infowindow) {
           infowindow.open(map, marker);
         }
       }
-// This function will loop through the markers array and display them all.
+
+      // This function will loop through the markers array and display them all.
       function showListings() {
         var bounds = new google.maps.LatLngBounds();
         // Extend the boundaries of the map for each marker and display the marker
@@ -263,7 +197,8 @@ function populateInfoWindow(marker, infowindow) {
           markers[i].setMap(null);
         }
       }
-// This function takes in a COLOR, and then creates a new marker
+
+      // This function takes in a COLOR, and then creates a new marker
       // icon of that color. The icon will be 21 px wide by 34 high, have an origin
       // of 0, 0 and be anchored at 10, 34).
       function makeMarkerIcon(markerColor) {
@@ -275,59 +210,4 @@ function populateInfoWindow(marker, infowindow) {
           new google.maps.Point(10, 34),
           new google.maps.Size(21,34));
         return markerImage;
-      }
-
- // This shows and hides (respectively) the drawing options.
-      function toggleDrawing(drawingManager) {
-        if (drawingManager.map) {
-          drawingManager.setMap(null);
-          // In case the user drew anything, get rid of the polygon
-          if (polygon !== null) {
-            polygon.setMap(null);
-          }
-        } else {
-          drawingManager.setMap(map);
-        }
-      }
-
-      // This function hides all markers outside the polygon,
-      // and shows only the ones within it. This is so that the
-      // user can specify an exact area of search.
-      function searchWithinPolygon() {
-        for (var i = 0; i < markers.length; i++) {
-          if (google.maps.geometry.poly.containsLocation(markers[i].position, polygon)) {
-            markers[i].setMap(map);
-          } else {
-            markers[i].setMap(null);
-          }
-        }
-      }
-
-      // This function takes the input value in the find nearby area text input
-      // locates it, and then zooms into that area. This is so that the user can
-      // show all listings, then decide to focus on one area of the map.
-      function zoomToArea() {
-        // Initialize the geocoder.
-        var geocoder = new google.maps.Geocoder();
-        // Get the address or place that the user entered.
-        var address = document.getElementById('zoom-to-area-text').value;
-        // Make sure the address isn't blank.
-        if (address == '') {
-          window.alert('You must enter an area, or address.');
-        } else {
-          // Geocode the address/area entered to get the center. Then, center the map
-          // on it and zoom in
-          geocoder.geocode(
-            { address: address,
-              componentRestrictions: {locality: 'Kolkata'}
-            }, function(results, status) {
-              if (status == google.maps.GeocoderStatus.OK) {
-                map.setCenter(results[0].geometry.location);
-                map.setZoom(15);
-              } else {
-                window.alert('We could not find that location - try entering a more' +
-                    ' specific place.');
-              }
-            });
-        }
       }
