@@ -26,7 +26,8 @@
 
             <select data-bind= "options: availablelocations,
                                 optionsCaption:'Choose a Touriest Spot Name', 
-                                value: chosenlocation"> </select>
+                                 optionsText: 'name',
+				value: chosenlocation"> </select>
             <button data-bind ="enable: chosenlocation, click: resetlocation">Clear</button>
           </div>
         </div>
