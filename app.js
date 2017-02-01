@@ -61,8 +61,8 @@ var ViewModel = function() {
     })
     var largeInfowindow = new google.maps.InfoWindow(); //creating the Infowindow
     var bounds = new google.maps.LatLngBounds(); //bounds of the map        
-    var defaultIcn= makeMarkerIcon('0091ff');
-     var HighlightedIcn= makeMarkerIcon('ffff24');
+    var defaultIcon= makeMarkerIcon('0091ff');
+     var HighlightedIcon= makeMarkerIcon('ffff24');
     
     for (var i = 0, l = locations.length; i < l; i++) //creating marker and infowindow for each and every location in the locations list
     {
@@ -82,10 +82,10 @@ var ViewModel = function() {
             populateInfoWindow(this, largeInfowindow);
         });
         marker.addListener('mouseover', function() {
-            this.setIcon(HighlightedIcn);
+            this.setIcon(HighlightedIcon);
           });
           marker.addListener('mouseout', function() {
-            this.setIcon(defaultIcn);
+            this.setIcon(defaultIcon);
           });
     }
     map.fitBounds(bounds);
