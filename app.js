@@ -47,7 +47,7 @@ var ViewModel = function() {
         new google.maps.event.trigger(place.marker, 'click');
     };
     this.clickedplace = ko.observable('');
-    this.search = ko.computed(function() {
+    this.searchedplace = ko.computed(function() {
         var userInput = this.clickedplace()
             .toLowerCase(); // Make search case insensitive
         return searchResult = ko.utils.arrayFilter(self.locationList(), function(item) {
