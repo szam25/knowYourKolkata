@@ -1,47 +1,54 @@
 <!DOCTYPE html>
 <html>
-  <head>
-  	<meta charset="utf-8">
 
- 	<meta name="viewport" content="width=device-width, initial-scale=1">
- 
-	<title>neighbhorhood_map</title>
- 
- 	<link href="style.css" rel="stylesheet">
- 	</head>
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/app.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+    
+</head>
+
 <body>
-    <div class="container">
-      <div class="options-box">
-      
-        <h1> Know The City Of Joy</h1>
-        <hr>
-        <div>
-          <input id="show-listings" type="button" value="Show Listings">
-          <input id="hide-listings" type="button" value="Hide Listings">
-        </div>
-          <hr>
-        <h2>Search Touriest Attraction Spot</h2>
-          <hr>
-          <div>
+    <header class="nav-bar navbar-fixed-top">
 
-            <select data-bind= "options: availablelocations,
-                                optionsCaption:'Choose a Touriest Spot Name', 
-                                 optionsText: 'name',
-				value: chosenlocation"> </select>
-            <button data-bind ="enable: chosenlocation, click: resetlocation">Clear</button>
-          </div>
+        <h1>KOLKATA</h1>
+        <h2>Know The City Of Joy</h2>
+        <div class="col-lg-12 glyphmenu">
+            <span class="glyphicon glyphicon-menu-hamburger menuicn" id="menu-toggle"></span>
         </div>
-     
-      <div id="map"></div>
+    </header>
+
+    <!-- /#sidebar-wrapper -->
+    <div id="wrapper" class="toggled">
+        <div id="sidebar-wrapper">
+            <h4 class="sidebar-heading">Search Touriest Attraction Spot</h4>
+            <input type="search" placeholder="Choose a Touriest Spot Name" data-bind="textInput: OnClickPlace">
+            <ul class="sidebar-nav" data-bind="foreach: search">
+                <li class="sidebar-list" data-bind="text: title, click: $parent.currentMarker"></li>
+            </ul>
+        </div>
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12" id="map"></div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
     </div>
-    <script src="jquery.min.js"></script>
-  <script src="main.js"></script>
-  <script src="app.js"></script>
-	<script src="knockout-3.4.1.js"></script>
-	<script async defer src=
-        "https://maps.googleapis.com/maps/api/js?key=AIzaSyDxMhlC3xwZwQ9rT7YzwVJpeaLKIH5X3AM&v=3&callback=initMap">
-    </script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/knockout-3.4.1.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/my.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=drawing,geometry&key=AIzaSyDxMhlC3xwZwQ9rT7YzwVJpeaLKIH5X3AM&callback=initMap" async defer></script>
 
-  </body>
+</body>
+
 </html>
-  
+
