@@ -64,7 +64,7 @@ var ViewModel = function() {
     var defaultIcn= makeMarkerIcon('0091ff');
      var HighlightedIcn= makeMarkerIcon('ffff24');
     
-    for (var i = 0; i < locations.length; i++) //creating marker and infowindow for each and every location in the locations list
+    for (var i = 0, l = locations.length; i < l; i++) //creating marker and infowindow for each and every location in the locations list
     {
         var position = locations[i].location;
         var title = locations[i].title;
