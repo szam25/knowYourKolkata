@@ -52,11 +52,11 @@ var ViewModel = function() {
             .toLowerCase(); // Make search case insensitive
         return searchResult = ko.utils.arrayFilter(self.locationList(), function(item) {
             var title = item.title.toLowerCase(); // Make search case insensitive
-            var userInputIsInTitle = title.indexOf(userInput) >= 0; // true or false
+            var userInputTitle = title.indexOf(userInput) >= 0; // true or false
             if (item.marker) {
-                item.marker.setVisible(userInputIsInTitle); // toggle visibility of the marker
+                item.marker.setVisible(userInputTitle); // toggle visibility of the marker
             }
-            return userInputIsInTitle;
+            return userInputTitle;
         });
     })
     var largeInfowindow = new google.maps.InfoWindow(); //creating the Infowindow
