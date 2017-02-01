@@ -41,7 +41,7 @@ function initMap() {
 var ViewModel = function() {
     this.locationList = ko.observableArray(locations);
     this.title = ko.observable('');
-    this.currentMarker = function(place) {
+    this.CurrentMarker = function(place) {
         console.log(place.title);
         // trigger the click event of the marker
         new google.maps.event.trigger(place.marker, 'click');
