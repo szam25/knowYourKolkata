@@ -27,7 +27,7 @@
         <div id="sidebar-wrapper">
             <h4 class="sidebar-heading">Search Touriest Attraction Spot</h4>
             <input type="search" placeholder="Choose a Touriest Spot Name" data-bind="textInput: clickedplace">
-            <ul class="sidebar-nav" data-bind="foreach: search">
+            <ul class="sidebar-nav" data-bind="foreach: searchedplace">
                 <li class="sidebar-list" data-bind="text: title, click: $parent.currentMarker"></li>
             </ul>
         </div>
