@@ -2,7 +2,7 @@ $("#menu-toggle")
     .click(function(e) {
         //e.preventDefault();
         $("#wrapper")
-            .toggleClass("toggle");
+            .toggleClass("toggled");
     });
 var markers = [];
 var locations = [
