@@ -39,17 +39,16 @@ function initMap() {
 
 //viewModel
 var ViewModel = function() {
-    var self = this;
-    self.locationList = ko.observableArray(locations);
-    self.title = ko.observable('');
-    self.currentMarker = function(place) {
+    this.locationList = ko.observableArray(locations);
+    this.title = ko.observable('');
+    this.currentMarker = function(place) {
         console.log(place.title);
         // trigger the click event of the marker
         new google.maps.event.trigger(place.marker, 'click');
     };
-    self.OnClickPlace = ko.observable('');
-    self.search = ko.computed(function() {
-        var userInput = self.OnClickPlace()
+    this.clickedplace = ko.observable('');
+    this.search = ko.computed(function() {
+        var userInput = this.clickedplace()
             .toLowerCase(); // Make search case insensitive
         return searchResult = ko.utils.arrayFilter(self.locationList(), function(item) {
             var title = item.title.toLowerCase(); // Make search case insensitive
