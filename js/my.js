@@ -115,7 +115,7 @@ var ViewModel = function() {
     self.search = ko.computed(function() {
         var userInput = self.ClickedPlace()
             .toLowerCase(); // Make search case insensitive
-        return searchResult = ko.utils.arrayFilter(self.locationList(), function(item) {
+         searchResult = ko.utils.arrayFilter(self.locationList(), function(item) {
             var title = item.title.toLowerCase(); // Make search case insensitive
             var userInputTitle = title.indexOf(userInput) >= 0; // true or false
             if (item.marker) {
