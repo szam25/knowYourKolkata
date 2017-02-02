@@ -10,7 +10,7 @@
     <link href="css/app.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
-    
+
 </head>
 
 <body>
@@ -23,6 +23,7 @@
         </div>
     </header>
 
+    <!-- /#sidebar-wrapper -->
     <div id="wrapper" class="toggled">
         <div id="sidebar">
             <h4 class="sidebar-heading">Search Touriest Attraction Spot</h4>
@@ -31,11 +32,13 @@
                 <li class="sidebar-list" data-bind="text: title, click: $parent.currentMarker"></li>
             </ul>
         </div>
-                <div class="row">
-                    <div class="col-md-12" id="map"></div>
-                </div>
-        
+        <!-- Page Content -->
+        <div class="row">
+            <div class="col-md-12" id="map"></div>
+        </div>
 
+
+        <!-- /#page-content-wrapper -->
 
     </div>
     <script src="js/libs/jquery.min.js"></script>
@@ -47,4 +50,3 @@
 </body>
 
 </html>
-
