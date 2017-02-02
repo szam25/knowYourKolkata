@@ -35,17 +35,12 @@ header
     margin-top: 12%;
 }
 
-#wrapper.toggled {
-    padding-left: 250px;
-    width: 250px;
-     position: absolute;
-    margin-right: -250px;
-}
 .row{
     width:100%;
     position: absolute;
     margin-right: -250px;
     padding: 15px;
+      height:100%;
 }
 
 
