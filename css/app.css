@@ -34,6 +34,7 @@ header
 #wrapper {
     transition: all 0.5s ease;
     margin-top: 12%;
+      height: 100%;
 }
 
 .row{
