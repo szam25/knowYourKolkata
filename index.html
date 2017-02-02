@@ -5,8 +5,8 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="bootstrap.min.css" rel="stylesheet">
-    <link href="style.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/app.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
     
@@ -18,34 +18,29 @@
         <h1>KOLKATA</h1>
         <h2>Know The City Of Joy</h2>
         <div class="col-md-12 glyphmenu">
-            <span class="glyphicon glyphicon-menu-hamburger menuicn" id="menu-toggle"></span>
+            <span class="glyphicon glyphicon-menu-hamburger menuicon" id="menu-button"></span>
         </div>
     </header>
 
-    <!-- /#sidebar-wrapper -->
     <div id="wrapper" class="toggled">
-        <div id="sidebar_wrapper">
-            <h4 class="sidebar_heading">Search Touriest Attraction Spot</h4>
-            <input type="search" placeholder="Choose a Touriest Spot Name" data-bind="textInput: clickedplace">
-            <ul class="sidebar_nav" data-bind="foreach: searchedplace">
-                <li class="sidebar_list" data-bind="text: title, click: $parent.CurrentMarker"></li>
+        <div id="sidebar-wrapper">
+            <h4 class="sidebar-heading">Search Touriest Attraction Spot</h4>
+            <input type="search" placeholder="Choose a Touriest Spot Name" data-bind="textInput: ClickedPlace">
+            <ul class="sidebar-nav" data-bind="foreach: search">
+                <li class="sidebar-list" data-bind="text: title, click: $parent.currentMarker"></li>
             </ul>
         </div>
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-            <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-12" id="map"></div>
+                    <div class="col-md-12" id="map"></div>
                 </div>
-            </div>
-        </div>
-        <!-- /#page-content-wrapper -->
+        
+
 
     </div>
-    <script src="jquery.min.js"></script>
-    <script src="knockout-3.4.1.js"></script>
-    <script src="bootstrap.min.js"></script>
-    <script src="app.js"></script>
+    <script src="js/libs/jquery.min.js"></script>
+    <script src="js/libs/knockout-3.4.1.js"></script>
+    <script src="js/libs/bootstrap.min.js"></script>
+    <script src="js/my.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?libraries=drawing,geometry&key=AIzaSyDxMhlC3xwZwQ9rT7YzwVJpeaLKIH5X3AM&callback=initMap" async defer></script>
 
 </body>
