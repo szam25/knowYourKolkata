@@ -44,7 +44,7 @@ var ViewModel = function() {
     self.title = ko.observable('');
     self.currentMarker = function(place) {
         // trigger the click event of the marker
-        new google.maps.event.trigger(place.marker, 'click');
+         google.maps.event.trigger(place.marker, 'click');
     };
     self.ClickedPlace = ko.observable('');
     self.search = ko.computed(function() {
@@ -58,7 +58,8 @@ var ViewModel = function() {
             }
             return userInputTitle;
         });
-    })
+        return searchResult; 
+    });
     var largeInfowindow = new google.maps.InfoWindow(); //creating the Infowindow
     var bounds = new google.maps.LatLngBounds(); //bounds of the map        
     // Style the markers a bit. This will be our listing marker icon.
@@ -66,8 +67,16 @@ var ViewModel = function() {
      // Create a "highlighted location" marker color for when the user
         // mouses over the marker.
      var HighlightedIcon= makeMarkerIcon('ffff24');
-    
-    for (var i = 0, l= locations.length; i < l; i++) //creating marker and infowindow for each and every location in the locations list
+    function click() { 
+            populateInfoWindow(this, largeInfowindow);
+        }
+     function highlighted(){
+            this.setIcon(HighlightedIcon);
+          }
+  function mouseout() {
+            this.setIcon(defaultIcon);
+          }
+  for (var i = 0, l= locations.length; i < l; i++) //creating marker and infowindow for each and every location in the locations list
     {
          // Get the position from the location array.
         var position = locations[i].location;
@@ -85,19 +94,13 @@ var ViewModel = function() {
         markers.push(marker);
         bounds.extend(marker.position);
         // Create an onclick event to open the large infowindow at each marker.
-        marker.addListener('click', function() { 
-            populateInfoWindow(this, largeInfowindow);
-        });
-        marker.addListener('mouseover', function() {
-            this.setIcon(HighlightedIcon);
-          });
-          marker.addListener('mouseout', function() {
-            this.setIcon(defaultIcon);
-          });
+        marker.addListener('click', click );
+        marker.addListener('mouseover',highlighted);
+          marker.addListener('mouseout', mouseout);
     }
-    //map.fitBounds(bounds);
+    map.fitBounds(bounds);
      
-}
+};
 // This function populates the infowindow when the marker is clicked. We'll only allow
       // one infowindow which will open at the marker that is clicked, and populate based
       // on that markers position.
@@ -112,14 +115,7 @@ function populateInfoWindow(marker, infowindow) {
         infowindow.addListener('closeclick', function() {
             infowindow.marker = null;
         });
-        var wikiUrl = 'https://en.wikipedia.org/w/api.php?action=opensearch&search='
-         +marker.title+'&format=json&callback=wikiCallback';
-     $.ajax( {
-      url: wikiUrl,
-     dataType: "jsonp"}).done(function(response){
-      var articleList = response[1];
-      var url = 'http://en.wikipedia.org/wiki/' + marker.title;
-    });
+        
         //street view on the marker
         var streetViewService = new google.maps.StreetViewService();
         var radius = 50;
@@ -131,7 +127,7 @@ function populateInfoWindow(marker, infowindow) {
                 var nearStreetViewLocation = data.location.latLng;
                 var heading = google.maps.geometry.spherical.computeHeading(
                     nearStreetViewLocation, marker.position);
-                infowindow.setContent('<div>' + marker.title + '</div>'+'<div><a href='+url+'</a></div><div id="pano"></div>');
+                infowindow.setContent('<div>' + marker.title +'</div><div id="pano"></div>');
                 var panaromaOptions = {
                     position: nearStreetViewLocation,
                     pov: {
