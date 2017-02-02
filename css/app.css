@@ -20,6 +20,10 @@ header
     text-align: left;
     background-color: #f44336;
     position: absolute;
+    cursor: pointer;
+    display: inline-block;
+    flex: auto;
+    overflow: hidden;
 }
 .menuicon
 {
