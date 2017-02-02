@@ -1,0 +1,144 @@
+
+      body {
+        font-family: 'Roboto', sans-serif;
+        overflow-x: hidden;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+
+header
+{
+    color:#ffeb3b;
+    text-align: center;
+    background-color: black;
+}
+
+.glyphmenu
+{
+    text-align: left;
+    background-color: #f44336;
+    position: absolute;
+}
+.menuicon
+{
+    font-size: 30px;
+    color: #9e9e9e;
+}
+
+#wrapper {
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    margin-top: 12%;
+}
+
+#wrapper.toggled {
+    padding-left: 250px;
+    width: 250px;
+     position: absolute;
+    margin-right: -250px;
+}
+.row{
+    width:100%;
+    position: absolute;
+    margin-right: -250px;
+    padding: 15px;
+}
+
+
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    left: 250px;
+    width: 250px;
+    height: 100%;
+    margin: inherit;
+    margin-left: -250px;
+    overflow-y: auto;
+    background: #9e9e9e;
+    border-top: 2px deepskyblue;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    }
+
+
+// Sidebar Styles 
+
+
+.sidebar-nav {
+    position: absolute;
+    top: 0;
+    width: 250px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+
+.sidebar-nav li {
+    text-indent: 20px;
+    line-height: 40px;
+}
+
+.sidebar-list
+{
+    list-style: none;
+    color:white;
+}
+
+
+.sidebar-heading
+{
+    color:deepskyblue;
+    padding: 10px;
+}
+.sicn
+{
+    color:deepskyblue;
+}
+
+#map
+{
+    
+        height: 100%;
+        margin-left: 30px;
+        width: 100%;
+      }
+#pano
+{
+    width:200px;
+    height:200px;
+}
+@media(min-width:768px) {
+    #wrapper {
+        padding-left: 250px;
+    }
+
+    #wrapper.toggled {
+        padding-left: 0;
+    }
+
+    #sidebar-wrapper {
+        width: 270px;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        width: 0;
+    }
+
+    #page-content-wrapper {
+        padding: 20px;
+        position: relative;
+    }
+
+    #wrapper.toggled #page-content-wrapper {
+        position: relative;
+        margin-right: 0;
+    }
+    
+}
