@@ -1,4 +1,5 @@
-body {
+
+      body {
         font-family: 'Roboto', sans-serif;
         overflow-x: hidden;
         height: 100%;
@@ -18,7 +19,6 @@ header
 {
     text-align: left;
     background-color: #f44336;
-    position: absolute;
     cursor: pointer;
     display: inline-block;
     flex: auto;
@@ -26,22 +26,25 @@ header
 }
 .menuicon
 {
-    font-size: 30px;
+        font-size: 30px;
     color: #9e9e9e;
+
+
 }
 
 #wrapper {
-    transition: all 0.5s ease;
+  transition: transform 0.3s ease;
     margin-top: 12%;
-      height: 100%;
+    height: 100%;
 }
+
 
 .row{
     width:100%;
     position: absolute;
     margin-right: -250px;
     padding: 15px;
-      height:100%;
+    height: 100%;
 }
 
 
@@ -56,19 +59,11 @@ header
     overflow-y: auto;
     background: #9e9e9e;
     border-top: 2px deepskyblue;
-    transition: all 0.5s ease;
-    }
-
+    transition: transform 0.3s ease;
+}
 
 // Sidebar Styles 
 
-.sidebar-nav {
-    text-indent: 20px;
-    line-height: 40px;
-    cursor: pointer;
-    position: absolute;
-    width: 250px;
-}
 
 .sidebar-list
 {
