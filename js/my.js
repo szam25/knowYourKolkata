@@ -6,85 +6,18 @@ $("#menu-button")
 
 var map;
 var markers = [];
-var locations = [{
-        title: 'Eden Gardens',
-        location: {
-            lat: 22.564608,
-            lng: 88.343265
-        }
-    },
-    {
-        title: 'Zoological Garden Alipore',
-        location: {
-            lat: 22.537472,
-            lng: 88.331859
-        }
-    },
-    {
-        title: 'Victoria Memorial',
-        location: {
-            lat: 22.544808,
-            lng: 88.342558
-        }
-    },
-    {
-        title: 'Jorasanko Thakurbari',
-        location: {
-            lat: 22.583199,
-            lng: 88.356716
-        }
-    },
-    {
-        title: 'Dakshineswar Kali Temple',
-        location: {
-            lat: 22.654909,
-            lng: 88.357531
-        }
-    },
-    {
-        title: 'St. Pauls Cathedral',
-        location: {
-            lat: 22.544243,
-            lng: 88.346682
-        }
-    },
-    {
-        title: 'Nicco Park',
-        location: {
-            lat: 22.571264,
-            lng: 88.422080
-        }
-    },
-    {
-        title: 'Iskcon',
-        location: {
-            lat: 22.543608,
-            lng: 88.353639
-        }
-    },
-    {
-        title: 'Belur Math',
-        location: {
-            lat: 22.632185,
-            lng: 88.355891
-        }
-    },
-    {
-        title: 'Science City',
-        location: {
-            lat: 22.540119,
-            lng: 88.396072
-        }
-    },
-    {
-        title: 'Birla Mandir',
-        location: {
-            lat: 22.530456,
-            lng: 88.364927
-        }
-    }
-
-
+var locations = [
+    { title: 'Eden Gardens', location: { lat: 22.564608, lng: 88.343265 } },
+    { title: 'Zoological Garden Alipore', location: { lat: 22.537472, lng: 88.331859 } },
+    { title: 'Victoria Memorial', location: { lat: 22.544808, lng: 88.342558 } },
+    { title: 'Jorasanko Thakurbari', location: { lat: 22.583199, lng: 88.356716 } },
+    { title: 'Dakshineswar Kali Temple', location: { lat: 22.654909, lng: 88.357531 } },
+    { title: 'St. Pauls Cathedral', location: { lat: 22.544243, lng: 88.346682 } },
+    { title: 'Nicco Park', location: { lat: 22.571264, lng: 88.422080 } },
+    { title: 'Iskcon', location: { lat: 22.543608, lng: 88.353639 } },
+    { title: 'Belur Math', location: { lat: 22.632185, lng: 88.355891 } },
+    { title: 'Science City', location: { lat: 22.540119, lng: 88.396072 } },
+    { title: 'Birla Mandir', location: { lat: 22.530456, lng: 88.364927 } }
 ];
 
 
@@ -95,7 +28,6 @@ function initMap() {
             lng: 88.363895
         },
         zoom: 13,
-
         mapTypeControl: false
     });
     ko.applyBindings(new ViewModel());
