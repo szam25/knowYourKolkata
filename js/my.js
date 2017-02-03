@@ -140,22 +140,21 @@ function populateInfoWindow(marker, infowindow) {
                 infowindow.setContent('<div>' + marker.title + '</div>' + '<div>No streetview Found</div>');
             }
         }
-        // Use streetview service to get the closest streetview image within
+       // Use streetview service to get the closest streetview image within
         // 50 meters of the markers position 
         // Open the infowindow on the correct marker.
         infowindow.open(map, marker);
-var wikiUrl = 'https://en.wikipedia.org/w/api.php?action=opensearch&search='
-    +marker.title+'&format=json&callback=wikiCallback';
-    $.ajax( {
-    url: wikiUrl,
-    dataType: "jsonp",
-    }).done(function (response){
-        var articleList = response[1];
-        var url = 'http://en.wikipedia.org/wiki/' + marker.title;
-        streetViewService.getPanoramaByLocation(marker.position, radius, getStreetView);
-        infowindow.setContent('<div>'+  marker.title + '</div><br><a href="'+url+'">'+url+'</a><hr><div id="pano"></div>');
-        infowindow.open(map, marker);
-    });
+        var wikiUrl = 'https://en.wikipedia.org/w/api.php?action=opensearch&search=' + marker.title + '&format=json&callback=wikiCallback';
+        $.ajax({
+            url: wikiUrl,
+            dataType: "jsonp",
+        }).done(function(response) {
+            var articleList = response[1];
+            var url = 'http://en.wikipedia.org/wiki/' + marker.title;
+            streetViewService.getPanoramaByLocation(marker.position, radius, getStreetView);
+            infowindow.setContent('<div>' + marker.title + '</div><br><a href="' + url + '">' + url + '</a><hr><div id="pano"></div>');
+            infowindow.open(map, marker);
+        });
 
     }
 }
