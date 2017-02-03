@@ -62,7 +62,7 @@ header
 
 // Sidebar Styles 
 
-.sidebar-nav li {
+.sidebar-nav {
     text-indent: 20px;
     line-height: 40px;
     cursor: pointer;
