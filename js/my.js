@@ -127,7 +127,6 @@ function populateInfoWindow(marker, infowindow) {
                 var nearStreetViewLocation = data.location.latLng;
                 var heading = google.maps.geometry.spherical.computeHeading(
                     nearStreetViewLocation, marker.position);
-                infowindow.setContent('<div>' + marker.title + '</div><div id="pano"></div>');
                 var panaromaOptions = {
                     position: nearStreetViewLocation,
                     pov: {
@@ -146,7 +145,18 @@ function populateInfoWindow(marker, infowindow) {
         streetViewService.getPanoramaByLocation(marker.position, radius, getStreetView);
         // Open the infowindow on the correct marker.
         infowindow.open(map, marker);
-
+var wikiUrl = 'https://en.wikipedia.org/w/api.php?action=opensearch&search='
+    +marker.title+'&format=json&callback=wikiCallback';
+    $.ajax( {
+    url: wikiUrl,
+    dataType: "jsonp",
+    }).done(function (response){
+        var articleList = response[1];
+        var url = 'http://en.wikipedia.org/wiki/' + marker.title;
+        streetViewService.getPanoramaByLocation(marker.position, radius, getStreetView);
+        infowindow.setContent('<div>'+  marker.title + '</div><br><a href="'+url+'">'+url+'</a><hr><div id="pano"></div>');
+        infowindow.open(map, marker);
+    });
 
     }
 }
