@@ -33,6 +33,11 @@ header {
     height: 100%;
 }
 
+#wrapper.toggled{
+    padding-left: 250px;
+
+}
+
 .row {
     width: 100%;
     position: absolute;
