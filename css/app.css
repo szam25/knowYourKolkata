@@ -1,10 +1,9 @@
-html,
 body {
     font-family: 'Roboto', sans-serif;
-    overflow-x: hidden;
     height: 100%;
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
 }
 
 header {
@@ -14,12 +13,10 @@ header {
 }
 
 .glyphmenu {
-    text-align: left;
+    text-align: center;
     background-color: #f44336;
     cursor: pointer;
     display: inline-block;
-    flex: auto;
-    overflow: hidden;
 }
 
 .menuicon {
@@ -28,15 +25,22 @@ header {
 }
 
 #wrapper {
-    transition: transform 0.3s ease;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: transform 0.5s ease;
     margin-top: 12%;
-    height: 100%;
 }
 
-#wrapper.toggled{
+#wrapper.toggled {
     padding-left: 250px;
+    margin-right: -250px;
 
 }
+
+ #sidebar #wrapper.toggled{
+    width: 250px;
+ }
 
 .row {
     width: 100%;
@@ -47,8 +51,7 @@ header {
 }
 
 #sidebar {
-    z-index: 1000;
-    position: fixed;
+    position: absolute;
     left: 250px;
     width: 250px;
     height: 100%;
@@ -57,10 +60,22 @@ header {
     overflow-y: auto;
     background: #9e9e9e;
     border-top: 2px deepskyblue;
-    transition: transform 0.3s ease;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: transform 0.5s ease;
 }
 
-// Sidebar Styles 
+.sidebar-nav{
+    position: absolute;
+    width: 250px;
+
+}
+
+.sidebar-nav li{
+    text-indent: 20px;
+    line-height: 40px;
+}
 
 .sidebar-list {
     list-style: none;
@@ -69,7 +84,6 @@ header {
 
 .sidebar-heading {
     color: deepskyblue;
-    padding: 10px;
 }
 
 .sicn {
