@@ -141,8 +141,7 @@ function populateInfoWindow(marker, infowindow) {
             }
         }
         // Use streetview service to get the closest streetview image within
-        // 50 meters of the markers position
-        streetViewService.getPanoramaByLocation(marker.position, radius, getStreetView);
+        // 50 meters of the markers position 
         // Open the infowindow on the correct marker.
         infowindow.open(map, marker);
 var wikiUrl = 'https://en.wikipedia.org/w/api.php?action=opensearch&search='
