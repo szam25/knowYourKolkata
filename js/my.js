@@ -1,9 +1,9 @@
 $("#menu-button")
-    .click(function(e) {
+    .click(function() {
         $("#wrapper")
             .toggleClass("toggled");
     });
-
+//this will toggle the hamburge menu
 var map;
 var markers = [];
 var locations = [
