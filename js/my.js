@@ -137,7 +137,7 @@ function populateInfoWindow(marker, infowindow) {
                 var panaroma = new google.maps.StreetViewPanorama(
                     document.getElementById('pano'), panaromaOptions);
             } else {
-                infowindow.setContent('<div>' + marker.title + '</div>' + '<div>No streetview Found</div>');
+                infowindow.setContent('<div>' + marker.title + '</div><br><a href="' + url + '">' + url + '</a><hr><div>No streetview Found</div>');
             }
         }
        // Use streetview service to get the closest streetview image within
